@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tshitenge/models/weather_data_model.dart';
 import 'package:tshitenge/routes/weather_route_manager.dart';
-import 'package:tshitenge/services/weather_services.dart';
 import 'package:tshitenge/view__model/weather_view_model.dart';
 
 import '../../widgets/main_page_widgets/feels_like_text.dart';
@@ -22,8 +20,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
 //
   TextEditingController enterCityController = TextEditingController();
-  WeatherData? everything;
-//
   @override
   void dispose() {
     enterCityController.dispose();
@@ -31,8 +27,6 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget build(BuildContext context) {
-    var cityName;
-
     return Scaffold(
         body: Container(
       decoration: BoxDecoration(
@@ -73,7 +67,7 @@ class _MainPageState extends State<MainPage> {
               Center(
                 child: Column(
                   children: [
-                    WeatherIconWidget(),
+                    const WeatherIconWidget(),
                     const SizedBox(
                       height: 15,
                     ),
@@ -87,24 +81,24 @@ class _MainPageState extends State<MainPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
-                            const SizedBox(
+                            SizedBox(
                               height: 20,
                             ),
                             TemperatureWdget(),
-                            const SizedBox(
+                            SizedBox(
                               width: 30,
                             ),
                             FeelsLikeWidget(),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
-                        HumidityWidget(),
-                        SizedBox(
+                        const HumidityWidget(),
+                        const SizedBox(
                           height: 30,
                         ),
-                        WeatherDescriptionWidget()
+                        const WeatherDescriptionWidget()
                       ],
                     ),
                     const SizedBox(
@@ -120,12 +114,7 @@ class _MainPageState extends State<MainPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 50),
                 child: TextField(
                   controller: enterCityController,
-                  onChanged: (changeOnValue) {
-                    // WeatherViewModel.getData(changeOnValue);
-                  },
-                  // keyboardType: TextInputType.name,
-                  // style: const TextStyle(color: Colors.white),
-                  //  onChanged: (input) =>,
+                  onChanged: (changeOnValue) {},
                 ),
               ),
               const SizedBox(
@@ -145,7 +134,7 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 40,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
@@ -155,13 +144,12 @@ class _MainPageState extends State<MainPage> {
                         .pushNamed(WeatherRouteManager.detailsPage);
                   },
                   child: Container(
+                    height: 30,
+                    width: 100,
                     decoration: BoxDecoration(
-                        color: Colors.grey,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(16)),
-                    child: const Text(
-                      'MORE WEATHER INFO',
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                    ),
+                    child: const Center(child: Icon(Icons.more_horiz_rounded)),
                   ),
                 ),
               ),

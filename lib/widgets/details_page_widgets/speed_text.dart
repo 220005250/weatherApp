@@ -13,12 +13,10 @@ class WindSpeedWidget extends StatelessWidget {
     return Selector<WeatherViewModel, double?>(
       selector: (context, weatherViewModel) => weatherViewModel.windspeed,
       builder: (context, windspeed, child) {
-        return windspeed == null
-            ? Container()
-            : Text(
-                'Windspeed: $windspeed',
-                style: const TextStyle(fontSize: 15),
-              );
+        return Text(
+          'Windspeed: $windspeed',
+          style: const TextStyle(fontSize: 15),
+        );
       },
     );
   }

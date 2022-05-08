@@ -25,7 +25,6 @@ class WeatherServices {
       try {
         jsonMap = jsonDecode(response.body);
         weatherData = WeatherData.fromJson(jsonMap);
-        print("weather Service Debug: $jsonMap");
       } catch (e) {
         throw Exception(e.toString());
       }
