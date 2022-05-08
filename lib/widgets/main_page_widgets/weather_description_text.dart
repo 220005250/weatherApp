@@ -21,7 +21,7 @@ class WeatherDescriptionWidget extends StatelessWidget {
                   Positioned(
                     child: Text(
                       weatherDescription.toUpperCase(),
-                      style: const TextStyle(fontSize: 30),
+                      style: const TextStyle(color: Colors.white, fontSize: 26),
                     ),
                   ),
                 ],

@@ -11,7 +11,7 @@ class WeatherRouteManager {
     switch (settings.name) {
       case mainPage:
         return MaterialPageRoute(
-          builder: (context) => WeatherScreen(),
+          builder: (context) => const MainPage(),
         );
 
       case detailsPage:

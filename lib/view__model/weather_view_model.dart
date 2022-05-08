@@ -105,7 +105,7 @@ class WeatherViewModel with ChangeNotifier {
 
       _cityName = _weatherData!.cityName;
       _weatherDescription = _weatherData!.weatherDescription;
-      _temperature = _weatherData!.pressure;
+      _temperature = _weatherData!.temperature;
       _weatherIcon = _weatherData!.weatherIcon;
       _weatherDescription = _weatherData!.weatherDescription;
       _humidity = _weatherData!.humidity;

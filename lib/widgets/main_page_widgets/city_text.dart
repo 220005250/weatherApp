@@ -10,7 +10,12 @@ class CityNameWidget extends StatelessWidget {
     return Selector<WeatherViewModel, String>(
         selector: (context, weatherViewModel) => weatherViewModel.cityName!,
         builder: (context, cityName, child) {
-          return Text(cityName);
+          return Text(cityName,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 35,
+                fontWeight: FontWeight.w300,
+              ));
         });
   }
 }

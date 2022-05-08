@@ -16,8 +16,8 @@ class TemperatureWdget extends StatelessWidget {
         return temperature == null
             ? Container()
             : Text(
-                '$temperature °C',
-                style: const TextStyle(fontSize: 30),
+                '$temperature  °C',
+                style: const TextStyle(fontSize: 30, color: Colors.white),
               );
       },
     );
