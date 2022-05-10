@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tshitenge/views/pages/newPage/new_page.dart';
 import '../views/pages/details_page.dart';
 import '../views/pages/main_page.dart';
 

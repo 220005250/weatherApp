@@ -3,17 +3,25 @@ import 'package:tshitenge/models/weather_data_model.dart';
 import 'package:tshitenge/services/weather_services.dart';
 
 class WeatherViewModel with ChangeNotifier {
-  WeatherData _weatherData = WeatherData(
-      cityName: "cityName",
-      weatherIcon: "",
-      weatherDescription: "",
-      temperature: 0.0,
-      feelsLike: 0.0,
-      humidity: 0.0,
-      pressure: 0.0,
-      windspeed: 0.0,
-      sunrise: DateTime.now(),
-      sunset: DateTime.now());
+  late WeatherData _weatherData;
+
+  WeatherViewModel() {
+    _weatherData = WeatherData(
+        cityName: "cityName",
+        weatherIcon: "",
+        weatherDescription: "",
+        temperature: 0.0,
+        feelsLike: 0.0,
+        humidity: 0.0,
+        pressure: 0.0,
+        windspeed: 0.0,
+        sunrise: DateTime.now(),
+        sunset: DateTime.now());
+  }
+
+  void initWeather() {
+    getData("Welkom");
+  }
 
   WeatherData get weatherData => _weatherData;
 
@@ -98,26 +106,28 @@ class WeatherViewModel with ChangeNotifier {
   DateTime get sunset => _sunset;
 
 //************GETTING DATA FROM JSON********** */
-  void getData(String city) async {
+  Future<WeatherData> getData(String city) async {
     startLoading('Loading json weather data. Please wait');
     try {
       _weatherData = await WeatherServices.getJsonData(city);
 
-      _cityName = _weatherData!.cityName;
-      _weatherDescription = _weatherData!.weatherDescription;
-      _temperature = _weatherData!.temperature;
-      _weatherIcon = _weatherData!.weatherIcon;
-      _weatherDescription = _weatherData!.weatherDescription;
-      _humidity = _weatherData!.humidity;
-      _pressure = _weatherData!.pressure;
-      _windspeed = _weatherData!.windspeed;
-      _sunrise = _weatherData!.sunrise;
-      _sunset = _weatherData!.sunset;
-      _feelsLike = _weatherData!.feelsLike;
+      _cityName = _weatherData.cityName;
+      _weatherDescription = _weatherData.weatherDescription;
+      _temperature = _weatherData.temperature;
+      _weatherIcon = _weatherData.weatherIcon;
+      _weatherDescription = _weatherData.weatherDescription;
+      _humidity = _weatherData.humidity;
+      _pressure = _weatherData.pressure;
+      _windspeed = _weatherData.windspeed;
+      _sunrise = _weatherData.sunrise;
+      _sunset = _weatherData.sunset;
+      _feelsLike = _weatherData.feelsLike;
 
       stopLoading();
     } catch (e) {
+      stopLoading();
       startError(e.toString());
     }
+    return _weatherData;
   }
 }

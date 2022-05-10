@@ -16,7 +16,7 @@ class PressureWidget extends StatelessWidget {
         return pressure == null
             ? Container()
             : Text(
-                'Pressure: $pressure',
+                'Pressure: $pressure hPa',
                 style: const TextStyle(fontSize: 15),
               );
       },

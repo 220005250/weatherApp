@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tshitenge/models/weather_data_model.dart';
 import 'package:tshitenge/routes/weather_route_manager.dart';
 import 'package:tshitenge/view__model/weather_view_model.dart';
 
+import '../../widgets/main_page_widgets/error_pop_up.dart';
 import '../../widgets/main_page_widgets/feels_like_text.dart';
 import '../../widgets/main_page_widgets/humidity_text.dart';
 import '../../widgets/main_page_widgets/temperature_text.dart';
@@ -52,61 +54,72 @@ class _MainPageState extends State<MainPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Center(
-                      child: Text(
-                        'CITY-WEATHER',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 30),
+                        child: Text(
+                          'CITY-WEATHER',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     )
                   ],
                 ),
               ),
-              Center(
-                child: Column(
-                  children: [
-                    const WeatherIconWidget(),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    const CityNameWidget(),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Consumer<WeatherViewModel>(builder: ((context, model, child) {
+                if (model.loading) {
+                  return const CircularProgressIndicator();
+                } else if (model.isError) {
+                  return ErrorPopUp(message: model.errorMesssage);
+                } else {
+                  return Center(
+                    child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            SizedBox(
-                              height: 20,
+                        const WeatherIconWidget(),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const CityNameWidget(),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                TemperatureWdget(),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                FeelsLikeWidget(),
+                              ],
                             ),
-                            TemperatureWdget(),
-                            SizedBox(
-                              width: 30,
+                            const SizedBox(
+                              height: 30,
                             ),
-                            FeelsLikeWidget(),
+                            const HumidityWidget(),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            const WeatherDescriptionWidget()
                           ],
                         ),
                         const SizedBox(
-                          height: 30,
+                          height: 20,
                         ),
-                        const HumidityWidget(),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const WeatherDescriptionWidget()
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                  ],
-                ),
-              ),
+                  );
+                }
+              })),
               const SizedBox(
                 height: 40,
               ),

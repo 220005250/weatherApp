@@ -3,8 +3,6 @@ import 'package:http/http.dart';
 import 'package:tshitenge/models/weather_data_model.dart';
 
 class WeatherServices {
-  //static String city = 'welkom';
-
   static const String apiKey = '75496fababd0f36f42d3e246cdcce60e';
 
   static Future<WeatherData> getJsonData(String city) async {
@@ -28,60 +26,27 @@ class WeatherServices {
       } catch (e) {
         throw Exception(e.toString());
       }
+    } else if (response.statusCode == 404) {
+      throw CityNotFound('City not Found');
+    } else if (response.statusCode == 400) {
+      throw BadRequest("Bad Request");
     } else {
-      throw Exception();
+      throw Exception("An error occured.");
     }
     return weatherData;
   }
 }
 
+class CityNotFound {
+  final String message;
+  CityNotFound(this.message);
+  @override
+  String toString() => message;
+}
 
-
-
-
-// **************************************************************************
-// //trial&Error
-// Future<void> main(List<String> args) async {
-//   var data = await getWeatherData();
-
-//   //print maps
-//   print(data['main']['temp']);
-//   print(data['main']['feels_like']);
-//   print(data['main']['pressure']);
-//   print(data['main']['humidity']);
-//   print(data['wind']['speed']);
-//   print(data['sys']['sunrise']);
-//   print(data['sys']['sunset']);
-//   print(data['name']);
-
-//   //print list
-//   //List weather = data['weather'];
-//   // for(var i=0; weather.length; i++)
-//   // {
-//   //    print(data['weather'][0]['description']);
-//   //    print(data['weather'][0]['icon']);
-//   // }
-//   print(data['weather'][0]['description']);
-//   print(data['weather'][0]['icon']);
-// }
-
-// String _city = 'Welkom';
-
-// const String _apiKey = '75496fababd0f36f42d3e246cdcce60e';
-
-// Future<Map> getWeatherData() async {
-//   Map<dynamic, dynamic> map = {};
-//   final response = await get(Uri.parse(
-//     'http://api.openweathermap.org/data/2.5/weather?q=welkom&units=metric&appid=75496fababd0f36f42d3e246cdcce60e',
-//   ));
-
-//   if (response.statusCode == 200) {
-//     try {
-//       map = jsonDecode(response.body);
-//       print(map);
-//     } catch (e) {
-//       'error occured while loading map!';
-//     }
-//   }
-//   return map;
-// }
+class BadRequest {
+  final String message;
+  BadRequest(this.message);
+  @override
+  String toString() => message;
+}

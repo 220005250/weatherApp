@@ -16,7 +16,7 @@ class SunriseWidget extends StatelessWidget {
         return sunrise == null
             ? Container()
             : Text(
-                'Sunrise: $sunrise',
+                'Sunrise: ${sunrise}',
                 style: const TextStyle(fontSize: 15),
               );
       },
