@@ -15,7 +15,7 @@ class _ErrorPopUpState extends State<ErrorPopUp> {
   Widget build(BuildContext context) {
     return Container(
       width: 200,
-      height: 100,
+      height: 120,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),

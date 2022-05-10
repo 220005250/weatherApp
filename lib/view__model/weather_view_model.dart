@@ -17,6 +17,8 @@ class WeatherViewModel with ChangeNotifier {
         windspeed: 0.0,
         sunrise: DateTime.now(),
         sunset: DateTime.now());
+
+    initWeather();
   }
 
   void initWeather() {

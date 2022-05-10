@@ -133,18 +133,17 @@ class _MainPageState extends State<MainPage> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16)),
-                child: ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<WeatherViewModel>()
-                        .getData(enterCityController.text);
-                  },
-                  child: const Text('Search'),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.white,
+                  onPrimary: Colors.lightBlue,
                 ),
+                onPressed: () {
+                  context
+                      .read<WeatherViewModel>()
+                      .getData(enterCityController.text);
+                },
+                child: const Text('Search'),
               ),
               const SizedBox(
                 height: 40,
