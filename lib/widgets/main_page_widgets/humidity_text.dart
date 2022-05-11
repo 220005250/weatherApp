@@ -16,7 +16,7 @@ class HumidityWidget extends StatelessWidget {
         return humidity == null
             ? Container()
             : Text(
-                'HUMIDITY: $humidity',
+                'HUMIDITY: $humidity %',
                 style: const TextStyle(fontSize: 22, color: Colors.white),
               );
       },

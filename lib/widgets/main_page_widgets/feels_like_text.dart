@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/weather_data_model.dart';
 import '../../view__model/weather_view_model.dart';
 
 class FeelsLikeWidget extends StatelessWidget {
@@ -20,7 +19,7 @@ class FeelsLikeWidget extends StatelessWidget {
       builder: (context, feelsLike, child) {
         return Text(
           'FEELS LIKE: $feelsLike °C',
-          style: const TextStyle(fontSize: 20, color: Colors.white),
+          style: const TextStyle(fontSize: 25, color: Colors.white),
         );
       },
     );

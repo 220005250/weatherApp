@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tshitenge/models/weather_data_model.dart';
 import 'package:tshitenge/routes/weather_route_manager.dart';
 import 'package:tshitenge/view__model/weather_view_model.dart';
 
