@@ -19,7 +19,7 @@ class FeelsLikeWidget extends StatelessWidget {
       selector: (context, weatherViewModel) => weatherViewModel.feelsLike,
       builder: (context, feelsLike, child) {
         return Text(
-          'Feels Like: $feelsLike °C',
+          'FEELS LIKE: $feelsLike °C',
           style: const TextStyle(fontSize: 20, color: Colors.white),
         );
       },
